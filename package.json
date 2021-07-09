@@ -1,0 +1,18 @@
+{
+  "name": "tonodedo",
+  "version": "1.0.0",
+  "description": "Node.js REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "express",
+    "jwt",
+    "mysql",
+    "authentication"
+  ],
+  "author": "trolit",
+  "license": "ISC"
+}
