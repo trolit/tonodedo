@@ -1,1 +1,3 @@
-export const secret = "tonodedo-secret-key-for-JWT-here";
+module.exports = {
+    secret: "tonodedo-secret-key-for-JWT-here"
+};

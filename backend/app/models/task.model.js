@@ -1,4 +1,4 @@
-export default (sequelize, Sequelize) => {
+module.exports = (sequelize, Sequelize) => {
 
     const Task = sequelize.define("tasks", {
 
@@ -14,4 +14,4 @@ export default (sequelize, Sequelize) => {
     });
   
     return Task;
-  };
+};
