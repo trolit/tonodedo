@@ -1,0 +1,1 @@
+export const secret = "tonodedo-secret-key-for-JWT-here";
