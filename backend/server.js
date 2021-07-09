@@ -1,5 +1,5 @@
-import express, { json, urlencoded } from "express";
-import cors from "cors";
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
 
@@ -10,10 +10,10 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
-app.use(json());
+app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 
 // simple route
 app.get("/", (req, res) => {
