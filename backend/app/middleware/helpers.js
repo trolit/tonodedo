@@ -11,8 +11,19 @@ areCredentialsEmpty = (req, res, next) => {
 
 };
 
+verifyLoggedUserEmail = (req, res, next) => {
+
+    if (req.body.email !== req.decodedEmail) {
+        return res.status(401).send({ message: `Not authorized to manipulate ${req.body.email} tasks.`});
+    }
+
+    next();
+
+}
+
 const helpers = {
-    areCredentialsEmpty: areCredentialsEmpty
+    areCredentialsEmpty: areCredentialsEmpty,
+    verifyLoggedUserEmail: verifyLoggedUserEmail
 };
 
 module.exports = helpers;
