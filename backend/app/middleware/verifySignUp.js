@@ -2,9 +2,10 @@ const db = require("../models");
 const User = db.user;
 
 checkDuplicateEmail = (req, res, next) => {
+
     User.findOne({
         where: {
-            email: req.body.email
+            email: req.body.email.toLowerCase()
         }
     }).then(user => {
         if (user) {
@@ -15,6 +16,7 @@ checkDuplicateEmail = (req, res, next) => {
         }
         next();
     });
+
 };
   
 const verifySignUp = {

@@ -20,6 +20,8 @@ app.get("/", (req, res) => {
   res.json({ message: "tonodedo API is running." });
 });
 
+// routes
+require('./app/routes/auth.routes')(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 
