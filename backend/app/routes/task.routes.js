@@ -3,6 +3,8 @@ const { authJwt, helpers } = require("../middleware");
 
 module.exports = function(app) {
 
+    let baseRoute = "/api/task";
+
     app.use(function(req, res, next) {
       res.header(
         "Access-Control-Allow-Headers",
@@ -12,28 +14,28 @@ module.exports = function(app) {
     });
   
     app.post(
-        "/api/task",
+        `${baseRoute}`,
         authJwt.verifyToken,
         helpers.verifyLoggedUserEmail,
         controller.create
     );
 
     app.get(
-        "/api/task", 
+        `${baseRoute}`, 
         authJwt.verifyToken,
         helpers.verifyLoggedUserEmail,
         controller.findAllByEmail
     );
   
     app.delete(
-        "/api/task/:id",
+        `${baseRoute}/:id`,
         authJwt.verifyToken,
         helpers.verifyLoggedUserEmail,
         controller.delete
     );
 
     app.put(
-        "/api/task/:id",
+        `${baseRoute}/:id`,
         authJwt.verifyToken,
         helpers.verifyLoggedUserEmail,
         controller.update
