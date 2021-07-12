@@ -3,7 +3,7 @@ const Task = db.task;
 
 exports.create = (req, res) => {
 
-    if (!req.description) {
+    if (!req.body.description.trim()) {
         return res.status(400).send({ message: "No description provided."});
     }
 
