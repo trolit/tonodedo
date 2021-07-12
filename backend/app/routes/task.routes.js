@@ -16,28 +16,28 @@ module.exports = function(app) {
     app.post(
         `${baseRoute}`,
         authJwt.verifyToken,
-        helpers.verifyLoggedUserEmail,
+        helpers.verifyLoggedUserEmailAsPayload,
         controller.create
     );
 
     app.get(
         `${baseRoute}/:email`, 
         authJwt.verifyToken,
-        helpers.verifyLoggedUserEmail,
+        helpers.verifyLoggedUserEmailAsParam,
         controller.findAllByEmail
     );
   
     app.delete(
-        `${baseRoute}/:id`,
+        `${baseRoute}/:email/:id`,
         authJwt.verifyToken,
-        helpers.verifyLoggedUserEmail,
+        helpers.verifyLoggedUserEmailAsParam,
         controller.delete
     );
 
     app.put(
         `${baseRoute}/:id`,
         authJwt.verifyToken,
-        helpers.verifyLoggedUserEmail,
+        helpers.verifyLoggedUserEmailAsPayload,
         controller.update
     );
     
