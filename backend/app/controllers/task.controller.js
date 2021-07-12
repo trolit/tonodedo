@@ -20,7 +20,7 @@ exports.findAllByEmail = (req, res) => {
 
     Task.findAll({
         where: {
-            userEmail: req.body.email
+            userEmail: req.params.email
         }
     })
         .then(data => {
