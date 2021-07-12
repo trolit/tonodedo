@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button, Row, Col, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faKey, fas, faSmile } from '@fortawesome/free-solid-svg-icons'
+import { faKey, faSmile } from '@fortawesome/free-solid-svg-icons'
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -51,7 +51,7 @@ export default class RegisterModal extends Component {
         this.setState({
           email: e.target.value
         });
-      }
+    }
     
       onChangePassword(e) {
         this.setState({
@@ -106,7 +106,7 @@ export default class RegisterModal extends Component {
 
     openModal = () => this.setState({ isOpen: true });
 
-    closeModal = () => {
+    closeAndResetModal = () => {
         this.setState({ 
             isOpen: false,
             successful: false,
@@ -126,7 +126,7 @@ export default class RegisterModal extends Component {
 
             <Modal 
                 show={this.state.isOpen} 
-                onHide={this.closeModal} 
+                onHide={this.closeAndResetModal} 
                 backdrop="static"
                 keyboard={false}
                 centered
@@ -187,7 +187,7 @@ export default class RegisterModal extends Component {
                                     <Button 
                                         variant="secondary" 
                                         style={{float: 'right'}} 
-                                        onClick={this.closeModal}
+                                        onClick={this.closeAndResetModal}
                                         disabled={this.state.loading}
                                     >
                                         Close window
@@ -216,7 +216,7 @@ export default class RegisterModal extends Component {
                                         <Button 
                                             className="w-100"
                                             variant="secondary"
-                                            onClick={this.closeModal}
+                                            onClick={this.closeAndResetModal}
                                         >
                                             Close window
                                         </Button>}
