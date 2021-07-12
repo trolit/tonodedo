@@ -8,7 +8,13 @@ exports.create = (req, res) => {
         userEmail: req.body.email
     })
         .then(() => {
-            res.status(201).send({ message: "Task added successfully!" });
+            Task.findOne({ 
+                where: { 
+                    description: req.body.description
+                } 
+            }).then(task => {
+                res.status(201).send({ task });
+            });
         })
     .catch(err => {
         res.status(500).send({ message: err.message });
