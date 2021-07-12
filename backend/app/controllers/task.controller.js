@@ -3,6 +3,10 @@ const Task = db.task;
 
 exports.create = (req, res) => {
 
+    if (!req.description) {
+        return res.status(400).send({ message: "No description provided."});
+    }
+
     Task.create({
         description: req.body.description,
         userEmail: req.body.email
