@@ -21,7 +21,7 @@ module.exports = function(app) {
     );
 
     app.get(
-        `${baseRoute}`, 
+        `${baseRoute}/:email`, 
         authJwt.verifyToken,
         helpers.verifyLoggedUserEmail,
         controller.findAllByEmail
