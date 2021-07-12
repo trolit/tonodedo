@@ -42,8 +42,6 @@ class App extends Component {
   }
 
   render() {
-    const { currentUser } = this.state;
-
     return (
 
       <div>
@@ -62,9 +60,7 @@ class App extends Component {
                     path={["/"]}
                     render={() => {
                         return (
-                            this.state.currentUser ?
-                            <Redirect to="/task" /> :
-                            <Redirect to="/login" /> 
+                          <Redirect to="/login" />
                         )
                     }}
                   />
@@ -74,12 +70,11 @@ class App extends Component {
                     render={() => {
                         return (
                             this.state.currentUser ?
-                            <Redirect to="/task" /> : 
-                            <Route exact path="/login" component={Login} />
+                            <Redirect to="/task" /> :
+                            <Route exact path="/login" component={Login} /> 
                         )
                     }}
                   />
-                  <Route exact path="/login" component={Login} />
                   <Route exact path="/task" component={Task} />
                 </Switch>
             </Col>
