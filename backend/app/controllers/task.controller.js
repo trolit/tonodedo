@@ -21,7 +21,10 @@ exports.findAllByEmail = (req, res) => {
     Task.findAll({
         where: {
             userEmail: req.params.email
-        }
+        },
+        order: [
+            ['createdAt', 'DESC']
+        ],
     })
         .then(data => {
             res.status(200).send(data);
@@ -35,7 +38,7 @@ exports.findAllByEmail = (req, res) => {
 exports.delete = (req, res) => {
 
     const id = req.params.id;
-  
+
     Task.destroy({
         where: { 
             id: id 
