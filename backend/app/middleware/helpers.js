@@ -24,7 +24,7 @@ verifyLoggedUserEmailAsPayload = (req, res, next) => {
 verifyLoggedUserEmailAsParam = (req, res, next) => {
 
     if (req.params.email !== req.decodedEmail) {
-        return res.status(401).send({ message: `Not authorized to manipulate ${req.body.email} tasks.`});
+        return res.status(401).send({ message: `Not authorized to manipulate ${req.params.email} tasks.`});
     }
 
     next();
