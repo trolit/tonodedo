@@ -28,19 +28,25 @@ exports.signin = (req, res) => {
       }
     })
         .then(user => {
-
-            var passwordIsValid = bcrypt.compareSync(
-            req.body.password,
-            user.password
-            );
-  
-            if (!user || !passwordIsValid) {
+            if (user === null) {
                 return res.status(400).send({
                     accessToken: null,
                     message: "Given credentials are invalid!"
                 });
             }
-  
+
+            var passwordIsValid = bcrypt.compareSync(
+                req.body.password,
+                user.password
+            );
+
+            if (!passwordIsValid) {
+                return res.status(400).send({
+                    accessToken: null,
+                    message: "Given credentials are invalid!"
+                });
+            }
+
             var token = jwt.sign({ email: user.email }, config.secret, {
                 expiresIn: 86400 // seconds (24 hours)
             });
