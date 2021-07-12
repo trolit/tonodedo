@@ -7,7 +7,7 @@ import AuthService from "../services/auth.service";
 
 import { isEmail } from "validator";
 
-import { Container, Row, Col, Alert, InputGroup, Button, FormControl } from 'react-bootstrap';
+import { Container, Row, Col, Alert, Button } from 'react-bootstrap';
 
 function instantiateEmptyFieldAlert(inputName) {
     return (
