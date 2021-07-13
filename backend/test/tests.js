@@ -8,7 +8,8 @@ var request = require("request");
 
 /*
   1. run node server.js
-  2. run npm test (data will be created for test purposes and then removed)
+  2. create account of testing purposes and adjust variables below.
+  3. run npm test
 */
 
 describe("To-node-Do API unit tests", function() {
@@ -129,7 +130,7 @@ describe("To-node-Do API unit tests", function() {
 
       it("returns token(200) on valid credentials", function() {
         request.post(`${signInUrl}`, { json: { email: existingUserEmail, password: validPassword } }, function(error, response, body) {
-          
+
           expect(body.email).to.equal(existingUserEmail);
           expect(body.accessToken).to.length.greaterThan(minimalTokenLength);
           expect(response.statusCode).to.equal(200);
