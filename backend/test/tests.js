@@ -24,7 +24,7 @@ describe("To-node-Do API unit tests", function() {
     
     var emailNotAppearingInValidToken = "myEmail@poczta.nowa.pl"
     
-    var validToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhc2FAenoucGwiLCJpYXQiOjE2MjYxMzU4MTUsImV4cCI6MTYyNjIyMjIxNX0.Lep-d16N3Np7UV1DI5dPxpxa4QoctNevR2DhceIYifU";
+    var validToken = "existingUserEmail JWT TOKEN here ;)";
     var wrongEmail = "fafa";
     var wrongPassword = "pass";
     var validPassword ="fasa";
