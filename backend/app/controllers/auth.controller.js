@@ -52,7 +52,7 @@ exports.signin = (req, res) => {
             });
   
             res.status(200).send({
-                email: user.email,
+                email: req.body.email,
                 accessToken: token
             });
         })
