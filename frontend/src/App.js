@@ -64,18 +64,8 @@ class App extends Component {
                         )
                     }}
                   />
-                  <Route
-                    exact
-                    path={["/login"]}
-                    render={() => {
-                        return (
-                            this.state.currentUser ?
-                            <Redirect to="/task" /> :
-                            <Route exact path="/login" component={Login} /> 
-                        )
-                    }}
-                  />
-                  <Route exact path="/task" component={Task} />
+                  <Route exact path="/login" component={ Login } />
+                  <Route exact path="/task" component={Task} /> 
                 </Switch>
             </Col>
           </Row>

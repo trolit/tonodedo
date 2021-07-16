@@ -42,8 +42,14 @@ export default class Login extends Component {
             email: "",
             password: "",
             loading: false,
-            message: ""
+            message: "",
+            currentUser: AuthService.getCurrentUser(),
         };
+
+        if(this.state.currentUser) {
+            this.props.history.push("/task");
+            window.location.reload();
+        }
     }
 
     onChangeEmail(e) {
