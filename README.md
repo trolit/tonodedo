@@ -23,6 +23,11 @@
 4. Run backend with <code>node server.js</code> command. <br/>
 5. Run frontend with <code>npm start</code> command. <br/>
 
+<h3>Running tests with Mocha & Chai</h3>
+1. Create testing purposes account and update tests.js data. <br/>
+2. Run backend. <br/>
+3. Run <code>npm test</code>.
+
 <br/>
 <br/>
 
