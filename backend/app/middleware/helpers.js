@@ -13,7 +13,7 @@ areCredentialsEmpty = (req, res, next) => {
 
 verifyLoggedUserEmailAsPayload = (req, res, next) => {
 
-    if (req.body.email !== req.decodedEmail) {
+    if (req.body.email.toLowerCase() !== req.decodedEmail) {
         return res.status(401).send({ message: `Not authorized to manipulate ${req.body.email} tasks.`});
     }
 
@@ -23,7 +23,7 @@ verifyLoggedUserEmailAsPayload = (req, res, next) => {
 
 verifyLoggedUserEmailAsParam = (req, res, next) => {
 
-    if (req.params.email !== req.decodedEmail) {
+    if (req.params.email.toLowerCase() !== req.decodedEmail) {
         return res.status(401).send({ message: `Not authorized to manipulate ${req.params.email} tasks.`});
     }
 
