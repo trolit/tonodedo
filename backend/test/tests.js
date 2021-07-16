@@ -7,93 +7,125 @@ var expect  = chai.expect;
 var request = require("request");
 
 /*
-  1. run node server.js
-  2. create account of testing purposes and adjust variables below.
-  3. run npm test
+  Before running up tests, create testing purposes account and fill in token below.
 */
 
-describe("To-node-Do API unit tests", function() {
+var testingAccountEmail = "iAmOnlyForTestingPurposes@iAmOnlyForTestingPurposes.RR.pl";
+var testingAccountPassword = "strongPassword1234";
+var testingAccountToken = "token";
 
-    var baseUrl = "http://localhost:8080/api";
-    var taskUrl = `${baseUrl}/task`;
-    var authUrl = `${baseUrl}/auth`;
+var baseUrl = "http://localhost:8080/api";
+var taskUrl = `${baseUrl}/task`;
+var authUrl = `${baseUrl}/auth`;
+var signInUrl = `${authUrl}/signin`;
 
-    var inValidToken = "inVALID";
+var inValidToken = "inVALID";
 
-    var existingUserEmail = "fasa@zz.pl"
-    
-    var emailNotAppearingInValidToken = "myEmail@poczta.nowa.pl"
-    
-    var validToken = "existingUserEmail JWT TOKEN here ;)";
-    var wrongEmail = "fafa";
-    var wrongPassword = "pass";
-    var validPassword ="fasa";
-    var minimalTokenLength = 50;
+var emailNotCarriedByToken = "myEmail@test.domain"
 
-    // *********************************
-    // TESTS
-    // *********************************
+var invalidEmail = "iDontExistBecauseImOnlyForUnitTestingPurposes@exception.arw";
+var invalidPassword = "nooneHasPasswordLikeThat";
 
-    describe("<> Get tasks by email tests", function() {
+var createdTaskId;
 
-      it("returns ok(200) on valid token", function() {
-        request.get(`${taskUrl}/${existingUserEmail}`, function(error, response, body) {
+describe("\n-----------------------------\nto-node-do API unit tests\n-----------------------------\n", function() {
 
-          expect(JSON.parse(body))
-            .to.be.an.instanceof(Array)
-            .and.to.have.property(0)
-            .that.includes.all.keys([ 'id', 'description', 'createdAt', 'updatedAt', 'userEmail' ]);
+    describe("<!> Sign up tests", function() {
+
+      var newAccountEmail = "newAccount@email.com";
+      var newAccountPassword = "newAccount.password";
+
+      it("returns message on successful registration", function() {
+        request.post(`${authUrl}/signup`, { 
+          json: { 
+            email: newAccountEmail, 
+            password: newAccountPassword 
+          } 
+        }, function(error, response, body) {
+  
+          expect(body.message).to.equal("User was registered successfully!");
+          expect(response.statusCode).to.equal(201);
+  
+        });
+      });
+
+      it("returns bad request on trying to register with already used address", function() {
+        request.post(`${authUrl}/signup`, { 
+          json: { 
+            email: testingAccountEmail, 
+            password: newAccountPassword 
+          } 
+        }, function(error, response, body) {
+  
+          expect(body.message).to.equal("Failed! Email is already in use!");
+          expect(response.statusCode).to.equal(400);
+  
+        });
+      });
+
+      it("returns bad request on no password provided", function() {
+        request.post(`${authUrl}/signup`, { 
+          json: { 
+            email: testingAccountEmail
+          } 
+        }, function(error, response, body) {
+  
+          expect(body.message).to.equal("Email and/or password is missing!");
+          expect(response.statusCode).to.equal(400);
+  
+        });
+      });
+
+      it("returns bad request on no email provided", function() {
+        request.post(`${authUrl}/signup`, { 
+          json: { 
+            password: newAccountPassword
+          } 
+        }, function(error, response, body) {
+  
+          expect(body.message).to.equal("Email and/or password is missing!");
+          expect(response.statusCode).to.equal(400);
+  
+        });
+      });
+
+      it("returns bad request on no data provided", function() {
+        request.post(`${authUrl}/signup`, function(error, response, body) {
+
+          expect(JSON.parse(body).message).to.equal("Email and/or password is missing!");
+          expect(response.statusCode).to.equal(400);
+  
+        });
+      });
+
+    });
+
+    describe("<!> Sign in tests", function() {
+
+      var minimalTokenLength = 50;
+      
+      it("return token and email on valid credentials", function() {
+        request.post(`${signInUrl}`, { 
+          json: { 
+            email: testingAccountEmail, 
+            password: testingAccountPassword 
+          } 
+        }, function(error, response, body) {
+
+          expect(body.email).to.equal(testingAccountEmail);
+          expect(body.accessToken).to.length.greaterThan(minimalTokenLength);
           expect(response.statusCode).to.equal(200);
-
-        }).setHeader("x-access-token", validToken);
-      });
-
-      it("returns unauthorized(401) on invalid token", function() {
-        request.get(`${taskUrl}/${existingUserEmail}`, function(error, response, body) {
-
-          expect(JSON.parse(body).message).to.equal("Unauthorized!");
-          expect(response.statusCode).to.equal(401);
-
-        }).setHeader("x-access-token", inValidToken);
-      });
-
-      it("returns forbidden(403) on missing token", function() {
-        request.get(`${taskUrl}/${existingUserEmail}`, function(error, response, body) {
-
-          expect(JSON.parse(body).message).to.equal("No token provided!");
-          expect(response.statusCode).to.equal(403);
 
         });
       });
 
-      it("returns unauthorized(401) on requesting other email content than the one carried by token", function() {
-        request.get(`${taskUrl}/${emailNotAppearingInValidToken}`, function(error, response, body) {
-
-          // expect(JSON.parse(body).message).to.equal(`Not authorized to manipulate ${emailNotAppearingInValidToken} tasks.`);
-          expect(response.statusCode).to.equal(401);
-          
-        }).setHeader("x-access-token", validToken);
-      });
-
-      it("returns not found(404) on not passing email param", function() {
-        request.get(`${taskUrl}/`, function(error, response, body) {
-
-          expect(response.statusCode).to.equal(404);
-
-        }).setHeader("x-access-token", validToken);
-      });
-
-    });
-  
-
-
-
-    describe("<> Sign in tests", function() {
-
-      signInUrl = `${authUrl}/signin`;
-
-      it("returns bad request(400) on invalid credentials", function() {
-        request.post(`${signInUrl}`, { json: { email: wrongEmail, password: wrongPassword } }, function(error, response, body) {
+      it("returns bad request on invalid credentials", function() {
+        request.post(`${signInUrl}`, { 
+          json: { 
+            email: invalidEmail, 
+            password: invalidPassword 
+          } 
+        }, function(error, response, body) {
 
           expect(body.message).to.equal("Given credentials are invalid!");
           expect(response.statusCode).to.equal(400);
@@ -101,8 +133,12 @@ describe("To-node-Do API unit tests", function() {
         });
       });
 
-      it("returns bad request(400) on missing password", function() {
-        request.post(`${signInUrl}`, { json: { email: wrongEmail } }, function(error, response, body) {
+      it("returns bad request on missing password", function() {
+        request.post(`${signInUrl}`, { 
+          json: { 
+            email: invalidEmail 
+          } 
+        }, function(error, response, body) {
 
           expect(body.message).to.equal("Email and/or password is missing!");
           expect(response.statusCode).to.equal(400);
@@ -110,8 +146,12 @@ describe("To-node-Do API unit tests", function() {
         });
       });
 
-      it("returns bad request(400) on missing email", function() {
-        request.post(`${signInUrl}`, { json: { password: wrongPassword } }, function(error, response, body) {
+      it("returns bad request on missing email", function() {
+        request.post(`${signInUrl}`, { 
+          json: { 
+            password: invalidPassword 
+          } 
+        }, function(error, response, body) {
 
           expect(body.message).to.equal("Email and/or password is missing!");
           expect(response.statusCode).to.equal(400);
@@ -119,7 +159,7 @@ describe("To-node-Do API unit tests", function() {
         });
       });
 
-      it("returns bad request(400) on missing body", function() {
+      it("returns bad request on missing body", function() {
         request.post(`${signInUrl}`, function(error, response, body) {
 
           expect(JSON.parse(body).message).to.equal("Email and/or password is missing!");
@@ -128,49 +168,107 @@ describe("To-node-Do API unit tests", function() {
         });
       });
 
-      it("returns token(200) on valid credentials", function() {
-        request.post(`${signInUrl}`, { json: { email: existingUserEmail, password: validPassword } }, function(error, response, body) {
-
-          expect(body.email).to.equal(existingUserEmail);
-          expect(body.accessToken).to.length.greaterThan(minimalTokenLength);
-          expect(response.statusCode).to.equal(200);
-
-        });
-      });
     });
 
+    describe("<!> Create task tests", function() {
 
-
-
-    describe("<> Create task tests", function() {
-
-      it("returns created(201) on successful task creation", function() {
-        request.post(`${taskUrl}`, { json: { email: existingUserEmail, description: "test123" } }, function(error, response, body) {    
+      it("returns task on successful creation request", function() {
+        request.post(`${taskUrl}`, { 
+          json: { 
+            email: testingAccountEmail, 
+            description: "test descriptionf afafaf" 
+          } 
+        }, function(error, response, body) {    
 
           expect(body.task);
           expect(response.statusCode).to.equal(201);
-          
-          // remove from Db after test
-          request.delete(`${taskUrl}/${existingUserEmail}/${body.task.id}`).setHeader("x-access-token", validToken);
-        }).setHeader("x-access-token", validToken);
+        }).setHeader("x-access-token", testingAccountToken);
       });
 
-      it("returns bad request(400) on empty description", function() {
-        request.post(`${taskUrl}`, { json: { email: existingUserEmail, description: "" } }, function(error, response, body) {    
+      it("returns bad request on empty description", function() {
+        request.post(`${taskUrl}`, { 
+          json: { 
+            email: testingAccountEmail, 
+            description: "" 
+          } 
+        }, function(error, response, body) {    
 
           expect(body.message).to.equal("No description provided.");
           expect(response.statusCode).to.equal(400);
           
-        }).setHeader("x-access-token", validToken);
+        }).setHeader("x-access-token", testingAccountToken);
       });
 
-      it("returns unauthorized(401) on trying to add task to different email than the one in token", function() {
-        request.post(`${taskUrl}`, { json: { email: wrongEmail, description: "test123" } }, function(error, response, body) {    
+      it("returns unauthorized when adding task to unowned email", function() {
+        request.post(`${taskUrl}`, { 
+          json: { 
+            email: invalidEmail, 
+            description: "test123" 
+          } 
+        }, function(error, response, body) {    
 
-          expect(body.message).to.equal(`Not authorized to manipulate ${wrongEmail} tasks.`);
+          expect(body.message).to.equal(`Not authorized to manipulate ${invalidEmail} tasks.`);
           expect(response.statusCode).to.equal(401);
           
-        }).setHeader("x-access-token", validToken);
+        }).setHeader("x-access-token", testingAccountToken);
       });
     });
+
+    describe("<!> Get tasks by email tests", function() {
+
+      it("returns tasks on valid token", function() {
+        request.get(`${taskUrl}/${testingAccountEmail}`, function(error, response, body) {
+
+          expect(JSON.parse(body))
+            .to.be.an.instanceof(Array)
+            .and.to.have.property(0)
+            .that.includes.all.keys([ 'id', 'description', 'createdAt', 'updatedAt', 'userEmail' ]);
+          expect(response.statusCode).to.equal(200);
+
+        }).setHeader("x-access-token", testingAccountToken);
+      });
+
+      it("returns unauthorized on invalid token", function() {
+        request.get(`${taskUrl}/${testingAccountEmail}`, function(error, response, body) {
+
+          expect(JSON.parse(body).message).to.equal("Unauthorized!");
+          expect(response.statusCode).to.equal(401);
+
+        }).setHeader("x-access-token", inValidToken);
+      });
+
+      it("returns forbidden on missing token", function() {
+        request.get(`${taskUrl}/${testingAccountEmail}`, function(error, response, body) {
+
+          expect(JSON.parse(body).message).to.equal("No token provided!");
+          expect(response.statusCode).to.equal(403);
+
+        });
+      });
+
+      it("returns unauthorized on requesting tasks assigned to other account", function() {
+        request.get(`${taskUrl}/${emailNotCarriedByToken}`, function(error, response, body) {
+
+          // expect(JSON.parse(body).message).to.equal(`Not authorized to manipulate ${emailNotCarriedByToken} tasks.`);
+          expect(response.statusCode).to.equal(401);
+          
+        }).setHeader("x-access-token", testingAccountToken);
+      });
+
+      it("returns not found on not passing email param", function() {
+        request.get(`${taskUrl}/`, function(error, response, body) {
+
+          expect(response.statusCode).to.equal(404);
+
+        }).setHeader("x-access-token", testingAccountToken);
+      });
+
+    });
+
+    describe("<!> Clean temporary data", function() {
+          console.log(createdTaskId
+          );
+          // remove from Db after test
+    });
+    
 });
