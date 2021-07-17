@@ -10,7 +10,7 @@ import Form from "react-validation/build/form";
 import AddTaskModal from "./addTaskModal.component";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faClock, faEdit, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 
 export default class Profile extends Component {
   constructor(props) {
@@ -116,10 +116,11 @@ export default class Profile extends Component {
                 <Container>
                   <Row>
                       <div className="form-group">
+                        <FontAwesomeIcon icon={faPen}/> &nbsp;
                         <strong>Update task description</strong>
                         <Textarea
                             type="text"
-                            className="mt-3 form-control"
+                            className="mt-3 form-control shadow-none"
                             name="email"
                             value={this.state.currentTaskDescription}
                             onChange={this.onChangeDescription}
@@ -128,18 +129,32 @@ export default class Profile extends Component {
                       </div>
                   </Row>
                   <Row md={4} className="justify-content-center mt-4">
-                    <Button variant="secondary" onClick={() => this.updateTask(this.state.newDescription)}>Update</Button>
+                    <Button 
+                      className="w-50 custom-btn" 
+                      variant="secondary" 
+                      onClick={() => this.updateTask(this.state.newDescription)}
+                    >
+                      Update
+                    </Button>
                     &nbsp;
-                    <Button variant="warning" onClick={this.closeModal}>Cancel update</Button>
+                    <Button 
+                      className="w-150px"
+                      variant="warning" 
+                      onClick={this.closeModal}
+                    >
+                      Cancel update
+                    </Button>
                   </Row>
                 </Container>      
               </Form>
             </Modal.Body>
           </Modal>
+
           {this.state.currentUser && 
           <Container>
             <Row style={{float: 'right'}}>
               <Button
+                className="logout-btn"
                 variant="secondary"
                 onClick={() => { AuthService.logout(); window.location.reload(); }}
               >
@@ -149,9 +164,8 @@ export default class Profile extends Component {
             <Row>
               <img
                   src="https://cdn.pixabay.com/photo/2020/01/21/18/39/todo-4783676_1280.png"
-                  className="img-fluid"
+                  className="img-fluid logo-image"
                   alt="Application logo"
-                  style={{width: "20%"}}
               />
               <header className="jumbotron">
                 <h3>
@@ -163,7 +177,7 @@ export default class Profile extends Component {
             <Row className="mt-3 mb-5">
               <CardColumns>
                 <Row>
-                  {this.state.tasks && this.state.tasks.map( ( {id, description, createdAt} ) => {
+                  {this.state.tasks && this.state.tasks.map( ( {id, description, createdAt, updatedAt} ) => {
                     return (
                       <Col key={id} md={4}>
                         <Card className="mt-4" bg="light" border="dark" style={{minHeight: "250px"}}>

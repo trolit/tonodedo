@@ -32,6 +32,22 @@ $darker-green-accent: darken($green-accent, 8%);
   text-align: center;
 }
 
+$logout-color: #5A4099;
+
+.logout-btn {
+  background-color: $logout-color;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  color: white;
+  width: 140px;
+}
+
+.logout-btn:focus, .logout-btn:hover {
+  background-color: darken($logout-color, 10%);
+}
+
 .custom-btn:hover, .custom-btn:focus {
   background-color: $darker-primary-color;
   color: white;
@@ -71,4 +87,18 @@ $darker-green-accent: darken($green-accent, 8%);
 
 .ml-10 {
   margin-left: 10%;
+}
+
+.w-150px {
+  width: 150px;
+}
+
+.logo-image {
+  width: 20%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .logo-image {
+    width: 45%;
+  }
 }

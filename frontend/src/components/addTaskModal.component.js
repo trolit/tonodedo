@@ -3,8 +3,6 @@ import { Modal, Button, Row, Col, Container } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-import TaskService from "../services/task.service";
-
 import Form from "react-validation/build/form";
 import Textarea from "react-validation/build/textarea";
 
@@ -42,7 +40,14 @@ export default class AddTaskModal extends Component {
         return (
         
         <span>
-            <Button variant="success" size="sm" onClick={this.openModal}>here</Button>
+            <Button 
+                className="custom-btn shadow-none" 
+                variant="success" 
+                size="sm" 
+                onClick={this.openModal}
+            >
+                here
+            </Button>
 
             <Modal 
                 show={this.state.isOpen} 
@@ -52,21 +57,29 @@ export default class AddTaskModal extends Component {
                 centered
             >
     
+            <Modal.Header className="modal-header">
+                <div className="w-100">
+                    <div className="text-center">
+                        New task form
+                    </div> 
+                </div>
+            </Modal.Header>
+
             <Modal.Body>
                 <Container>
                     <Row className="mt-5">
                         <Col xs={12} md={12} className="text-center">
-                            {!this.state.successful ? <FontAwesomeIcon icon={faPlus} size="6x"/> : null}               
+                            {!this.state.successful ? <FontAwesomeIcon className="color-primary" icon={faPlus} size="6x"/> : null}               
                         </Col>      
                     </Row>
-                    <Row className="mt-5 mb-5">
+                    <Row className="mt-5">
                         <Col md={12}>            
                             <Form>
                                 <div>
                                     <div className="form-group">
                                         <Textarea
                                             type="text"
-                                            className="form-control mt-4"
+                                            className="form-control mt-4 shadow-none"
                                             name="description"
                                             placeholder="task description goes here..."
                                             rows="5"
@@ -77,7 +90,7 @@ export default class AddTaskModal extends Component {
 
                                     <div className="form-group mt-5">
                                         <Button 
-                                            className="w-50" 
+                                            className="w-50 custom-btn" 
                                             variant="success" 
                                             disabled={this.state.loading}
                                             onClick={() => {
