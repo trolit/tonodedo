@@ -43,33 +43,31 @@ class App extends Component {
 
   render() {
     return (
-
-      <div className="h-100">
+      
+      <div>
         {!this.state.currentUser && <Toast style={{width: '100%', position: 'absolute'}}>
             <Toast.Body>
               <FontAwesomeIcon icon={faQuestionCircle} /> Not an member yet? Sign up by clicking <RegisterModal/>
             </Toast.Body>
         </Toast>}
 
-        <div className="vertical-center">
+        <Container>
           <Row>
-            <Col>
-                <Switch>
-                  <Route
-                    exact
-                    path={["/"]}
-                    render={() => {
-                        return (
-                          <Redirect to="/login" />
-                        )
-                    }}
-                  />
-                  <Route exact path="/login" component={ Login } />
-                  <Route exact path="/task" component={Task} /> 
-                </Switch>
-            </Col>
+            <Switch>
+              <Route
+                exact
+                path={["/"]}
+                render={() => {
+                    return (
+                      <Redirect to="/login" />
+                    )
+                }}
+              />
+              <Route exact path="/login" component={ Login } />
+              <Route exact path="/task" component={Task} /> 
+            </Switch>
           </Row>
-        </div>
+        </Container>
       </div>
     );
   }

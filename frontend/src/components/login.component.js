@@ -101,7 +101,7 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div>
+            <div className="vertical-center extra-padding">
                 <Row className="d-flex justify-content-center">
                     <Col md="6">
                         <img
