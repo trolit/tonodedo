@@ -8,13 +8,15 @@
 
 <h5>Current visual output</h5>
 
-<p align="center"><img src="https://raw.githubusercontent.com/trolit/tonodedo/images/images/img1.PNG" alt="Tonodedo app image 1" width="900"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/trolit/tonodedo/images/images/photo1.png" alt="Tonodedo app image 1" width="900"/></p>
 
-<br/>
-<br/>
 <hr/>
 
-<p align="center"><img src="https://raw.githubusercontent.com/trolit/tonodedo/images/images/img2.PNG" alt="Tonodedo app image 2" width="900"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/trolit/tonodedo/images/images/photo2.png" alt="Tonodedo app image 2" width="900"/></p>
+
+<hr/>
+
+<p align="center"><img src="https://raw.githubusercontent.com/trolit/tonodedo/images/images/photo3.png" alt="Tonodedo app image 3" width="900"/></p>
 
 <h3>Setup</h3>
 1. Clone/download project. <br/>
