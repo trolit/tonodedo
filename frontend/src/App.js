@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
-import "./App.css";
+import "./App.scss";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -44,15 +44,15 @@ class App extends Component {
   render() {
     return (
 
-      <div>
-        {!this.state.currentUser && <Toast style={{width: '100%'}}>
+      <div className="h-100">
+        {!this.state.currentUser && <Toast style={{width: '100%', position: 'absolute'}}>
             <Toast.Body>
               <FontAwesomeIcon icon={faQuestionCircle} /> Not an member yet? Sign up by clicking <RegisterModal/>
             </Toast.Body>
         </Toast>}
 
-        <Container>
-          <Row className="mt-5">
+        <div className="vertical-center">
+          <Row>
             <Col>
                 <Switch>
                   <Route
@@ -69,7 +69,7 @@ class App extends Component {
                 </Switch>
             </Col>
           </Row>
-        </Container>
+        </div>
       </div>
     );
   }

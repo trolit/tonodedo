@@ -1,0 +1,82 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+$primary-color: #5366AD;
+$darker-primary-color: darken($primary-color, 10%);
+
+$green-accent: #7FC89A;
+$darker-green-accent: darken($green-accent, 8%);
+
+.signIn-btn {
+  background-color: $primary-color;
+  border-radius:50px;
+  width: 160px;
+  height: 60px;
+}
+
+.signIn-btn:hover, .signIn-btn:focus {
+  background-color: $darker-primary-color;
+}
+
+.custom-Input:focus {
+  border-color: $primary-color;
+}
+
+.custom-btn {
+  background-color: $primary-color;
+  color: white;
+  border: 0;
+  width: 80px;
+  text-align: center;
+}
+
+.custom-btn:hover, .custom-btn:focus {
+  background-color: $darker-primary-color;
+  color: white;
+}
+
+.vertical-center {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 8% 0 8%;
+  padding-top: 5%;
+}
+
+.modal-header {
+  background-color: $primary-color;
+  opacity: 0.8;
+  color: white;
+}
+
+.color-primary {
+  color: $primary-color;
+}
+
+.rotate-45 {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  /* Firefox */
+  -moz-transform: rotate(45deg);
+  /* IE */
+  -ms-transform: rotate(45deg);
+  /* Opera */
+  -o-transform: rotate(45deg);
+}
+
+.ml-10 {
+  margin-left: 10%;
+}
