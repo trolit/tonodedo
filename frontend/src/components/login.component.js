@@ -7,7 +7,7 @@ import AuthService from "../services/auth.service";
 
 import { isEmail } from "validator";
 
-import { Container, Row, Col, Alert, Button } from 'react-bootstrap';
+import { Row, Col, Alert, Button } from 'react-bootstrap';
 
 function instantiateEmptyFieldAlert(inputName) {
     return (
@@ -101,12 +101,13 @@ export default class Login extends Component {
 
     render() {
         return (
-            <Container>
+            <div className="vertical-center extra-padding">
                 <Row className="d-flex justify-content-center">
                     <Col md="6">
                         <img
                             src="https://cdn.pixabay.com/photo/2020/01/21/18/39/todo-4783676_1280.png"
                             className="img-fluid"
+                            alt="Logo"
                         />
                     </Col>
                 </Row>
@@ -121,7 +122,7 @@ export default class Login extends Component {
                                 <div className="form-group">
                                     <Input
                                         type="text"
-                                        className="form-control"
+                                        className="form-control custom-Input shadow-none"
                                         name="email"
                                         placeholder="email"
                                         value={this.state.email}
@@ -131,7 +132,7 @@ export default class Login extends Component {
 
                                     <Input
                                         type="password"
-                                        className="form-control mt-4"
+                                        className="form-control custom-Input mt-4 shadow-none"
                                         name="password"
                                         placeholder="password"
                                         value={this.state.password}
@@ -142,7 +143,7 @@ export default class Login extends Component {
 
                                 <div className="form-group text-center mt-4">
                                     <Button
-                                        className="w-100"
+                                        className="signIn-btn shadow-none"
                                         variant="secondary"
                                         type="submit"
                                         disabled={this.state.loading}
@@ -150,7 +151,7 @@ export default class Login extends Component {
                                         {this.state.loading && (
                                         <span className="spinner-border spinner-border-sm"></span>
                                         )}
-                                        <span>Sign me in</span>                                  
+                                        <span>{this.state.loading ? " signing in" : "Sign me in"}</span>                                  
                                     </Button>
                                 </div>
 
@@ -172,7 +173,7 @@ export default class Login extends Component {
                         </div>
                     </Col>
                 </Row> 
-            </Container>
+            </div>
         );
     }
 }

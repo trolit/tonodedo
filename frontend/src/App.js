@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 
-import "./App.css";
+import "./App.scss";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -43,31 +43,29 @@ class App extends Component {
 
   render() {
     return (
-
+      
       <div>
-        {!this.state.currentUser && <Toast style={{width: '100%'}}>
+        {!this.state.currentUser && <Toast style={{width: '100%', position: 'absolute'}}>
             <Toast.Body>
               <FontAwesomeIcon icon={faQuestionCircle} /> Not an member yet? Sign up by clicking <RegisterModal/>
             </Toast.Body>
         </Toast>}
 
         <Container>
-          <Row className="mt-5">
-            <Col>
-                <Switch>
-                  <Route
-                    exact
-                    path={["/"]}
-                    render={() => {
-                        return (
-                          <Redirect to="/login" />
-                        )
-                    }}
-                  />
-                  <Route exact path="/login" component={ Login } />
-                  <Route exact path="/task" component={Task} /> 
-                </Switch>
-            </Col>
+          <Row>
+            <Switch>
+              <Route
+                exact
+                path={["/"]}
+                render={() => {
+                    return (
+                      <Redirect to="/login" />
+                    )
+                }}
+              />
+              <Route exact path="/login" component={ Login } />
+              <Route exact path="/task" component={Task} /> 
+            </Switch>
           </Row>
         </Container>
       </div>

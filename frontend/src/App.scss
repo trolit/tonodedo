@@ -1,0 +1,104 @@
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+$primary-color: #5366AD;
+$darker-primary-color: darken($primary-color, 10%);
+
+$green-accent: #7FC89A;
+$darker-green-accent: darken($green-accent, 8%);
+
+.signIn-btn {
+  background-color: $primary-color;
+  border-radius:50px;
+  width: 160px;
+  height: 60px;
+}
+
+.signIn-btn:hover, .signIn-btn:focus {
+  background-color: $darker-primary-color;
+}
+
+.custom-Input:focus {
+  border-color: $primary-color;
+}
+
+.custom-btn {
+  background-color: $primary-color;
+  color: white;
+  border: 0;
+  width: 80px;
+  text-align: center;
+}
+
+$logout-color: #5A4099;
+
+.logout-btn {
+  background-color: $logout-color;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  color: white;
+  width: 140px;
+}
+
+.logout-btn:focus, .logout-btn:hover {
+  background-color: darken($logout-color, 10%);
+}
+
+.custom-btn:hover, .custom-btn:focus {
+  background-color: $darker-primary-color;
+  color: white;
+}
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.extra-padding {
+  padding: 0 8% 0 8%;
+}
+
+.modal-header {
+  background-color: $primary-color;
+  opacity: 0.8;
+  color: white;
+}
+
+.color-primary {
+  color: $primary-color;
+}
+
+.rotate-45 {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  /* Firefox */
+  -moz-transform: rotate(45deg);
+  /* IE */
+  -ms-transform: rotate(45deg);
+  /* Opera */
+  -o-transform: rotate(45deg);
+}
+
+.ml-10 {
+  margin-left: 10%;
+}
+
+.w-150px {
+  width: 150px;
+}
+
+.logo-image {
+  width: 20%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .logo-image {
+    width: 45%;
+  }
+}
