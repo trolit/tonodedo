@@ -151,7 +151,7 @@ export default class Login extends Component {
                                         {this.state.loading && (
                                         <span className="spinner-border spinner-border-sm"></span>
                                         )}
-                                        <span>Sign me in</span>                                  
+                                        <span>{this.state.loading ? " signing in" : "Sign me in"}</span>                                  
                                     </Button>
                                 </div>
 
