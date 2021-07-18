@@ -8,6 +8,7 @@ var request = require("request");
 
 /*
   Before running up tests, create testing purposes account and fill in token below.
+  Also make sure that "testingAccountEmail" has at least one task!
 */
 
 var testingAccountEmail = "iAmOnlyForTestingPurposes@iAmOnlyForTestingPurposes.RR.pl";
@@ -249,7 +250,7 @@ describe("\n-----------------------------\nto-node-do API unit tests\n----------
       it("returns unauthorized on requesting tasks assigned to other account", function() {
         request.get(`${taskUrl}/${emailNotCarriedByToken}`, function(error, response, body) {
 
-          // expect(JSON.parse(body).message).to.equal(`Not authorized to manipulate ${emailNotCarriedByToken} tasks.`);
+          expect(JSON.parse(body).message).to.equal(`Not authorized to manipulate ${emailNotCarriedByToken} tasks.`);
           expect(response.statusCode).to.equal(401);
           
         }).setHeader("x-access-token", testingAccountToken);
