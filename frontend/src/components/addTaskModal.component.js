@@ -69,7 +69,10 @@ export default class AddTaskModal extends Component {
                 <Container>
                     <Row className="mt-5">
                         <Col xs={12} md={12} className="text-center">
-                            {!this.state.successful ? <FontAwesomeIcon className="color-primary" icon={faPlus} size="6x"/> : null}               
+                            {!this.state.successful ? 
+                                <FontAwesomeIcon className="color-primary" icon={faPlus} size="6x"/> 
+                                : null
+                            }               
                         </Col>      
                     </Row>
                     <Row className="mt-5">
