@@ -35,7 +35,7 @@ $darker-green-accent: darken($green-accent, 8%);
   text-align: center;
 }
 
-$logout-color: #5A4099;
+$logout-color: #485d8b;
 
 .logout-btn {
   background-color: $logout-color;
@@ -43,6 +43,8 @@ $logout-color: #5A4099;
   padding-bottom: 20px;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
+  border-color: white;
+  border-top: 2px solid $logout-color;
   color: white;
   width: 140px;
 }
@@ -113,4 +115,10 @@ $logout-color: #5A4099;
 
 .text-Cabin {
   font-family: 'Cabin', sans-serif, Arial, Helvetica, sans-serif;
+}
+
+.custom-toast {
+  width: 100%;
+  position: relative;
+  z-index: 500;
 }

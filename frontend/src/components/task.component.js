@@ -10,6 +10,8 @@ import UpdateTaskModal from "./updateTaskModal.component";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faTrash } from '@fortawesome/free-solid-svg-icons'
 
+import ReactHtmlParser from 'react-html-parser';
+
 export default class Task extends Component {
   constructor(props) {
     super(props);
@@ -100,7 +102,7 @@ export default class Task extends Component {
                 />
                 <header className="jumbotron">
                   <h3>
-                    Welcome back, <strong>{this.state.currentUser.email}</strong>! <br/>
+                    Welcome back, <strong>{this.state.currentUser.email}</strong> /ᐠ｡ꞈ｡ᐟ\ <br/>
                   </h3>
                   <small>What tasks did you complete today? Got new ones? Click <AddTaskModal email={this.state.currentUser.email} onTaskAdd={this.addTask.bind(this)}/> to add more.</small>
                 </header>
@@ -116,8 +118,8 @@ export default class Task extends Component {
                               <FontAwesomeIcon icon={faClock}/> &nbsp; 
                               <span> created at { (new Date(createdAt)).toLocaleDateString() }</span>
                               <hr/>
-                              <strong className="text-Cabin">Description:</strong> <br/>
-                              <em className="text-indieFlower" style={{whiteSpace: "pre-line"}}>{description}</em>
+                              <strong className="text-Cabin">Description</strong> <br/>
+                              <em className="text-indieFlower" style={{whiteSpace: "pre-line"}}>{ReactHtmlParser(description)}</em>
                             </Card.Body>
                             <Card.Footer>
                               <UpdateTaskModal 

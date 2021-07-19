@@ -45,7 +45,7 @@ class App extends Component {
     return (
       
       <div>
-        {!this.state.currentUser && <Toast style={{width: '100%', position: 'absolute'}}>
+        {!this.state.currentUser && <Toast className="custom-toast">
             <Toast.Body>
               <FontAwesomeIcon icon={faQuestionCircle} /> Not an member yet? Sign up by clicking <RegisterModal/>
             </Toast.Body>
