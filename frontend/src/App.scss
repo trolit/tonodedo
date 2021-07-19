@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+
 html, body, #root {
   height: 100%;
   width: 100%;
@@ -101,4 +104,13 @@ $logout-color: #5A4099;
   .logo-image {
     width: 45%;
   }
+}
+
+.text-indieFlower {
+  font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.text-Cabin {
+  font-family: 'Cabin', sans-serif, Arial, Helvetica, sans-serif;
 }
