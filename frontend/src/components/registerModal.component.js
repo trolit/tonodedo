@@ -255,10 +255,10 @@ export default class RegisterModal extends Component {
                                 )}
 
                                 <CheckButton
-                                style={{ display: "none" }}
-                                ref={c => {
-                                    this.checkBtn = c;
-                                }}
+                                    style={{ display: "none" }}
+                                    ref={c => {
+                                        this.checkBtn = c;
+                                    }}
                                 />
                             </Form>
                         </Col>

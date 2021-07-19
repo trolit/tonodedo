@@ -24,7 +24,10 @@ class TaskService {
   }
 
   delete(email, id) {
-    return axios.delete(`${API_URL}${email}/${id}`, { headers: authHeader() });
+    return axios.delete(`${API_URL}${email}/${id}`, 
+    { 
+      headers: authHeader() 
+    });
   }
 
   update(id, description, email) {
