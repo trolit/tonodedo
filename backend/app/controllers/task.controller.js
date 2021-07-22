@@ -1,20 +1,23 @@
+const DOMPurify = require('isomorphic-dompurify');
 const db = require("../models");
 const Task = db.task;
 
 exports.create = (req, res) => {
 
-    if (!req.body.description.trim()) {
+    var cleanedDescription = DOMPurify.sanitize(req.body.description);
+    
+    if (!cleanedDescription.trim()) {
         return res.status(400).send({ message: "No description provided."});
     }
 
     Task.create({
-        description: req.body.description,
+        description: cleanedDescription,
         userEmail: req.body.email
     })
         .then(() => {
             Task.findOne({ 
                 where: { 
-                    description: req.body.description
+                    description: cleanedDescription
                 } 
             }).then(task => {
                 res.status(201).send({ task });
@@ -70,11 +73,16 @@ exports.delete = (req, res) => {
             message: `Could not delete task with id=${id}`
         });
     });
+
 };
 
 exports.update = (req, res) => {
+
     const id = req.params.id;
-  
+
+    var cleanedDescription = DOMPurify.sanitize(req.body.description);
+    req.body.description = cleanedDescription;
+
     Task.update(req.body, {
         where: { 
             id: id 
@@ -96,4 +104,5 @@ exports.update = (req, res) => {
             message: "Error updating task with id=" + id
         });
     });
+    
 };
