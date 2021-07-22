@@ -56,7 +56,7 @@ export default class Task extends Component {
     .then(
       () => {
         let updatedTask = this.state.tasks.find(item => item.id === taskId);
-        updatedTask.description = newDescription;
+        updatedTask.description = dompurify.sanitize(newDescription);
         this.setState({tasks: this.state.tasks});
       }
     ).catch(err => {
