@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClock, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import ReactHtmlParser from 'react-html-parser';
+import dompurify from 'dompurify';
 
 export default class Task extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ export default class Task extends Component {
   }
 
   removeTask(id) {
+
     TaskService.delete(this.state.currentUser.email, id)
     .then(
       () => {
@@ -45,9 +47,11 @@ export default class Task extends Component {
     ).catch(err => {
       console.log(err);
     });
+
   }
 
   updateTask(taskId, newDescription, email) {
+
     TaskService.update(taskId, newDescription, email)
     .then(
       () => {
@@ -58,17 +62,21 @@ export default class Task extends Component {
     ).catch(err => {
       console.log(err);
     })
+
   }
   
   addTask(email, description) {
+
     TaskService.create(email, description)
     .then(response => {
         this.setState({ tasks: [response.data.task].concat(this.state.tasks)})
       }
     )
+
   }
 
   render() {
+
     return (
       <div>
           <Route
@@ -85,15 +93,20 @@ export default class Task extends Component {
 
           {this.state.currentUser && 
             <Container>
+
               <Row style={{float: 'right'}}>
                 <Button
                   className="logout-btn"
                   variant="secondary"
-                  onClick={() => { AuthService.logout(); window.location.reload(); }}
+                  onClick={() => { 
+                    AuthService.logout(); 
+                    window.location.reload(); 
+                  }}
                 >
                   Log me out
                 </Button>
               </Row>
+
               <Row>
                 <img
                     src="https://cdn.pixabay.com/photo/2020/01/21/18/39/todo-4783676_1280.png"
@@ -107,6 +120,7 @@ export default class Task extends Component {
                   <small>What tasks did you complete today? Got new ones? Click <AddTaskModal email={this.state.currentUser.email} onTaskAdd={this.addTask.bind(this)}/> to add more.</small>
                 </header>
               </Row>
+              
               <Row className="mt-3 mb-5">
                 <CardColumns>
                   <Row>
@@ -116,10 +130,10 @@ export default class Task extends Component {
                           <Card className="mt-4" bg="light" border="dark" style={{minHeight: "250px"}}>
                             <Card.Body>
                               <FontAwesomeIcon icon={faClock}/> &nbsp; 
-                              <span> created at { (new Date(createdAt)).toLocaleDateString() }</span>
+                              <span> { (new Date(createdAt)).toLocaleDateString() } / { (new Date(createdAt)).toLocaleTimeString() }</span>
                               <hr/>
                               <strong className="text-Cabin">Description</strong> <br/>
-                              <em className="text-indieFlower" style={{whiteSpace: "pre-line"}}>{ReactHtmlParser(description)}</em>
+                              <em className="text-indieFlower" style={{whiteSpace: "pre-line"}}>{ReactHtmlParser(dompurify.sanitize(description))}</em>
                             </Card.Body>
                             <Card.Footer>
                               <UpdateTaskModal 
@@ -147,5 +161,6 @@ export default class Task extends Component {
         
       </div>
     );
+    
   }
 }
