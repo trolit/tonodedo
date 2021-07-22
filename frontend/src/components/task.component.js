@@ -8,7 +8,7 @@ import AddTaskModal from "./addTaskModal.component";
 import UpdateTaskModal from "./updateTaskModal.component";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faThumbtack, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 import ReactHtmlParser from 'react-html-parser';
 import dompurify from 'dompurify';
@@ -127,22 +127,33 @@ export default class Task extends Component {
                     {this.state.tasks && this.state.tasks.map( ( {id, description, createdAt} ) => {
                       return (
                         <Col key={id} md={4}>
-                          <Card className="mt-4" bg="light" border="dark" style={{minHeight: "250px"}}>
-                            <Card.Body>
-                              <FontAwesomeIcon icon={faClock}/> &nbsp; 
-                              <span> { (new Date(createdAt)).toLocaleDateString() } / { (new Date(createdAt)).toLocaleTimeString() }</span>
-                              <hr/>
-                              <strong className="text-Cabin">Description</strong> <br/>
+                          <Card className="mt-4 task-card" bg="light" border="dark" style={{minHeight: "250px"}}>
+                            <Card.Body className="task-card-body">
+                              <Row>
+                                <Col>
+                                  <FontAwesomeIcon className="fa-thumbtack-task" icon={faThumbtack}/> &nbsp; 
+                                  <em className="task-card-id text-center">Task #{id}</em>
+                                </Col>
+                                <Col className="text-right">
+                                  <div>
+                                    <span className="task-card-date"> { (new Date(createdAt)).toLocaleDateString() }</span>
+                                  </div>
+                                  <div>
+                                    <span className="task-card-time"> { (new Date(createdAt)).toLocaleTimeString() }</span>
+                                  </div>
+                                </Col>
+                              </Row>
+                              <hr className="hr-1"/>
                               <em className="text-indieFlower" style={{whiteSpace: "pre-line"}}>{ReactHtmlParser(dompurify.sanitize(description))}</em>
                             </Card.Body>
-                            <Card.Footer>
+                            <Card.Footer className="task-card-footer">
                               <UpdateTaskModal 
                                 description={description}
                                 id={id} 
                                 onTaskUpdate={this.updateTask.bind(this)}
                               />
                               <Button
-                                variant="danger"
+                                variant="danger delete-btn shadow-none"
                                 style={{float: "right"}}
                                 onClick={() => this.removeTask(id)}
                               >

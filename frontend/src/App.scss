@@ -122,3 +122,80 @@ $logout-color: #485d8b;
   position: relative;
   z-index: 500;
 }
+
+$task-primary-color: #ECDE05;
+
+.task-card {
+  border: none;
+}
+
+.task-card-body {
+  background-color: #FBF042;
+  border-top: 4px solid $task-primary-color;
+  border-left: 4px solid $task-primary-color;
+  border-right: 4px solid $task-primary-color;
+}
+
+.task-card-id {
+  @extend .text-Cabin;
+  font-size: 20px;
+  opacity: 0.2;
+  position: absolute;
+}
+
+.task-card-date {
+  @extend .text-Cabin;
+  opacity: 0.3;
+  font-size: 18px;
+}
+
+.task-card-time {
+  @extend .text-Cabin;
+  opacity: 0.3;
+  font-size: 14px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.task-card-footer {
+  background-color: #FBF042;
+  border-left: 4px solid $task-primary-color;
+  border-right: 4px solid $task-primary-color;
+  border-bottom: 4px solid $task-primary-color;
+  border-top: 0 none;
+}
+
+.hr-1 {
+  border: 3px solid #808080;
+  opacity: 0.15;
+}
+
+$update-btn-color: #C2B918;
+
+.update-btn, .update-btn:focus {
+  background-color: $update-btn-color;
+  width: 100px;
+  border: none;
+}
+
+.update-btn:hover {
+  background-color: darken($update-btn-color, 5%);
+}
+
+$delete-btn-color: #9E4237;
+
+.delete-btn {
+  background-color: $delete-btn-color;
+  border: none;
+}
+
+.fa-thumbtack-task {
+  font-size: 50px;
+  opacity: 0.1;
+}
