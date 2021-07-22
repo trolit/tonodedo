@@ -113,12 +113,12 @@ export default class Task extends Component {
                     className="img-fluid logo-image"
                     alt="Application logo"
                 />
-                <header className="jumbotron">
+                <div className="jumbotron">
                   <h3>
                     Welcome back, <strong>{this.state.currentUser.email}</strong> /ᐠ｡ꞈ｡ᐟ\ <br/>
                   </h3>
                   <small>What tasks did you complete today? Got new ones? Click <AddTaskModal email={this.state.currentUser.email} onTaskAdd={this.addTask.bind(this)}/> to add more.</small>
-                </header>
+                </div>
               </Row>
               
               <Row className="mt-3 mb-5">
