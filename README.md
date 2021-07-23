@@ -32,7 +32,7 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/trolit/tonodedo/images/images/photo1.png" alt="Tonodedo app image 1" width="900"/>
   <img src="https://raw.githubusercontent.com/trolit/tonodedo/images/images/photo2.png" alt="Tonodedo app image 2" width="900"/>
-  <img src="https://raw.githubusercontent.com/trolit/tonodedo/images/images/photo3.png" alt="Tonodedo app image 3" width="900"/>
+  <img src="https://raw.githubusercontent.com/trolit/tonodedo/images/images/photo4.png" alt="Tonodedo app image 3" width="900"/>
 </p>
 </details>
 
