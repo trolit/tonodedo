@@ -20,7 +20,6 @@ export default class Task extends Component {
     this.state = {
       currentUser: AuthService.getCurrentUser(),
       tasks: null,
-      isOpen: false,
     };
 
     if (this.state.currentUser !== null) {
