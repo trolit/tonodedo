@@ -129,11 +129,26 @@ $task-primary-color: #ECDE05;
   border: none;
 }
 
+.task-board {
+  background-image: url(https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366_1280.jpg);
+  padding: 30px;
+  border-radius: 30px;
+  background-repeat: repeat-y;
+  min-height: 470px;
+}
+
+.empty-task-board-text {
+  @extend .text-indieFlower;
+  color: #ffffff;
+  font-size: 30px;
+}
+
 .task-card-body {
   background-color: #FBF042;
   border-top: 4px solid $task-primary-color;
   border-left: 4px solid $task-primary-color;
   border-right: 4px solid $task-primary-color;
+  box-shadow: 5px -8px darken($task-primary-color, 10%);
 }
 
 .task-card-id {

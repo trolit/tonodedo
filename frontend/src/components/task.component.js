@@ -120,7 +120,13 @@ export default class Task extends Component {
                 </div>
               </Row>
               
-              <Row className="mt-3 mb-5">
+              <Row className="mt-3 mb-5 task-board">
+                {this.state.tasks && this.state.tasks.length === 0 && <Row>
+                  <div className="empty-task-board-text">
+                    Currently there are no tasks to display 😭 <br/>
+                    Add your first task to begin 🐶
+                  </div>     
+                </Row>}
                 <CardColumns>
                   <Row>
                     {this.state.tasks && this.state.tasks.map( ( {id, description, createdAt} ) => {
