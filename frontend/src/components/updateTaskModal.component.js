@@ -47,6 +47,7 @@ export default class UpdateTaskModal extends Component {
 
             <span>
                 <Button
+                    className="update-btn shadow-none"
                     variant="secondary"
                     onClick={() => this.openModal()}
                 >

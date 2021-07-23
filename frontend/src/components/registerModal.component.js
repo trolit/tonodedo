@@ -13,9 +13,9 @@ import AuthService from "../services/auth.service";
 const required = value => {
     if (!value) {
         return (
-        <div className="alert alert-danger" role="alert">
-            This field is required!
-        </div>
+            <div className="alert alert-danger" role="alert">
+                This field is required!
+            </div>
         );
     }
 };
@@ -23,12 +23,22 @@ const required = value => {
 const email = value => {
     if (!isEmail(value)) {
         return (
-        <div className="alert alert-danger" role="alert">
-            This is not a valid email.
-        </div>
+            <div className="alert alert-danger" role="alert">
+                This is not a valid email.
+            </div>
         );
     }
 };
+
+const minLength = value => {
+    if (value.length <= 3) {
+        return (
+            <div className="alert alert-danger" role="alert">
+                Password must contain at least 4 characters.
+            </div>
+        );
+    }
+}
   
 export default class RegisterModal extends Component {
     constructor(props) {
@@ -200,7 +210,7 @@ export default class RegisterModal extends Component {
                                             maxLength="40"
                                             value={this.state.password}
                                             onChange={this.onChangePassword}
-                                            validations={[required]}
+                                            validations={[required, minLength]}
                                         />
                                     </div>
 
