@@ -15,7 +15,7 @@ export default class AddTaskModal extends Component {
             description: "",
             email: this.props.email,
             isOpen: false,
-            loading: false
+            loading: false,
         };
     }
 
@@ -94,8 +94,8 @@ export default class AddTaskModal extends Component {
                                     <div className="form-group mt-5">
                                         <Button 
                                             className="w-50 custom-btn" 
-                                            variant="success" 
-                                            disabled={this.state.loading}
+                                            variant="success"
+                                            disabled={this.state.loading || this.state.description.length <= 0}
                                             onClick={() => {
                                                 this.setState({ loading: true });
                                                 this.props.onTaskAdd(this.state.email, this.state.description); 
