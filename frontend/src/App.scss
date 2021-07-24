@@ -27,7 +27,7 @@ $darker-green-accent: darken($green-accent, 8%);
   border-color: $primary-color;
 }
 
-.custom-btn {
+.custom-btn, .custom-btn:disabled {
   background-color: $primary-color;
   color: white;
   border: 0;
