@@ -31,6 +31,12 @@ export default class Task extends Component {
             tasks: response.data,
           });
         }
+      ).catch(err => {
+          if (err.message.includes("401")) {
+            AuthService.logout(); 
+            window.location.reload();
+          }
+        }
       );
     }
   }
