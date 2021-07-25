@@ -31,6 +31,12 @@ export default class Task extends Component {
             tasks: response.data,
           });
         }
+      ).catch(err => {
+          if (err.message.includes("401")) {
+            AuthService.logout(); 
+            window.location.reload();
+          }
+        }
       );
     }
   }
@@ -92,35 +98,37 @@ export default class Task extends Component {
 
           {this.state.currentUser && 
             <Container>
-
-              <Row style={{float: 'right'}}>
-                <Button
-                  className="logout-btn"
-                  variant="secondary"
-                  onClick={() => { 
-                    AuthService.logout(); 
-                    window.location.reload(); 
-                  }}
-                >
-                  Log me out
-                </Button>
-              </Row>
-
-              <Row>
-                <img
-                    src="https://cdn.pixabay.com/photo/2020/01/21/18/39/todo-4783676_1280.png"
-                    className="img-fluid logo-image"
-                    alt="Application logo"
-                />
-                <div className="jumbotron">
-                  <h3>
-                    Welcome back, <strong>{this.state.currentUser.email}</strong> /ᐠ｡ꞈ｡ᐟ\ <br/>
-                  </h3>
-                  <small>What tasks did you complete today? Got new ones? Click <AddTaskModal email={this.state.currentUser.email} onTaskAdd={this.addTask.bind(this)}/> to add more.</small>
+              <Row className="mb-5 task-board">
+                <div className="mb-2">
+                  <Button
+                      className="logout-btn"
+                      variant="outline-primary"
+                      onClick={() => { 
+                        AuthService.logout(); 
+                        window.location.reload(); 
+                      }}
+                  >
+                    -&gt; Log out
+                  </Button>
+                  <img
+                      src="https://cdn.pixabay.com/photo/2020/01/21/18/39/todo-4783676_1280.png"
+                      className="img-fluid logo-image"
+                      alt="Application logo"
+                  />
                 </div>
-              </Row>
-              
-              <Row className="mt-3 mb-5 task-board">
+                <div className="mb-5">
+                  <div className="jumbotron welcome-text mt-4">
+                    <h1 className="mt-0 charcat">/ᐠ｡ꞈ｡ᐟ\</h1>
+                    <h3>
+                      Welcome back, <strong>{this.state.currentUser.email}</strong>
+                    </h3>
+                    <small>What tasks did you complete today? Got new ones?</small> <br/> 
+                    <br/>
+                    <AddTaskModal email={this.state.currentUser.email} onTaskAdd={this.addTask.bind(this)}/>
+                  </div>
+                </div>
+
+
                 {this.state.tasks && this.state.tasks.length === 0 && <Row>
                   <div className="empty-task-board-text">
                     Currently there are no tasks to display 😭 <br/>
@@ -132,12 +140,12 @@ export default class Task extends Component {
                     {this.state.tasks && this.state.tasks.map( ( {id, description, createdAt} ) => {
                       return (
                         <Col key={id} md={4}>
-                          <Card className="mt-4 task-card" bg="light" border="dark" style={{minHeight: "250px"}}>
+                          <Card className="mt-4 task-card" bg="light" border="dark">
                             <Card.Body className="task-card-body">
                               <Row>
                                 <Col>
                                   <FontAwesomeIcon className="fa-thumbtack-task" icon={faThumbtack}/> &nbsp; 
-                                  <em className="task-card-id text-center">Task #{id}</em>
+                                  <em className="task-card-id text-center">#{id}</em>
                                 </Col>
                                 <Col className="text-right">
                                   <div>
@@ -149,7 +157,9 @@ export default class Task extends Component {
                                 </Col>
                               </Row>
                               <hr className="hr-1"/>
-                              <em className="text-indieFlower" style={{whiteSpace: "pre-line"}}>{ReactHtmlParser(dompurify.sanitize(description))}</em>
+                              <span className="text-indieFlower" style={{whiteSpace: "pre-line"}}>
+                                {ReactHtmlParser(dompurify.sanitize(description))}
+                              </span>
                             </Card.Body>
                             <Card.Footer className="task-card-footer">
                               <UpdateTaskModal 

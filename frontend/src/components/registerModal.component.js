@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button, Row, Col, Container } from "react-bootstrap";
+import { Modal, Button, Row, Col, Container, Alert } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faKey, faSmile } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,9 +13,9 @@ import AuthService from "../services/auth.service";
 const required = value => {
     if (!value) {
         return (
-            <div className="alert alert-danger" role="alert">
+            <Alert variant="dark" className="validationAlert">
                 This field is required!
-            </div>
+            </Alert>
         );
     }
 };
@@ -23,9 +23,9 @@ const required = value => {
 const email = value => {
     if (!isEmail(value)) {
         return (
-            <div className="alert alert-danger" role="alert">
+            <Alert variant="dark" className="validationAlert">
                 This is not a valid email.
-            </div>
+            </Alert>
         );
     }
 };
@@ -33,9 +33,9 @@ const email = value => {
 const minLength = value => {
     if (value.length <= 3) {
         return (
-            <div className="alert alert-danger" role="alert">
+            <Alert variant="dark" className="validationAlert">
                 Password must contain at least 4 characters.
-            </div>
+            </Alert>
         );
     }
 }
@@ -134,7 +134,7 @@ export default class RegisterModal extends Component {
         <span>
             <Button 
                 className="custom-btn shadow-none" 
-                variant="info" 
+                variant="outline-primary" 
                 size="sm" 
                 onClick={this.openModal}
             >
@@ -216,8 +216,8 @@ export default class RegisterModal extends Component {
 
                                     <div className="form-group mt-5">
                                         <Button 
-                                            className="w-50 custom-btn" 
-                                            variant="primary" 
+                                            className="modal-positive-btn shadow-none" 
+                                            variant="outline-success" 
                                             type="submit" 
                                             disabled={this.state.loading}
                                         >
@@ -226,12 +226,13 @@ export default class RegisterModal extends Component {
                                             ) : "Sign up"}
                                         </Button>
                                         <Button 
-                                            variant="secondary" 
+                                            className="modal-cancel-btn"
+                                            variant="outline-warning" 
                                             style={{float: 'right'}} 
                                             onClick={this.closeAndResetModal}
                                             disabled={this.state.loading}
                                         >
-                                            Close window
+                                            Close
                                         </Button>
                                     </div>
                                 </div>
@@ -243,7 +244,7 @@ export default class RegisterModal extends Component {
                                         className={
                                             this.state.successful
                                             ? "alert alert-success text-center"
-                                            : "alert alert-danger"
+                                            : "alert validationAlert"
                                         }
                                         role="alert"
                                         >
@@ -252,12 +253,12 @@ export default class RegisterModal extends Component {
                                             {this.state.message} <br/>
                                             You may now log in onto your account.
                                             <div className="mt-5">
-                                                <Button 
-                                                    className="w-100"
-                                                    variant="success"
+                                                <Button
+                                                    className="w-100 modal-cancel-btn"
+                                                    variant="outline-warning"
                                                     onClick={this.closeAndResetModal}
                                                 >
-                                                    Close window
+                                                    Close
                                                 </Button>
                                             </div>
                                         </div>
