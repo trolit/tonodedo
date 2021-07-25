@@ -11,7 +11,7 @@ import { Row, Col, Alert, Button } from 'react-bootstrap';
 
 function instantiateEmptyFieldAlert(inputName) {
     return (
-        <Alert variant="danger">
+        <Alert variant="dark" className="validationAlert">
             {inputName} field is empty!
         </Alert>
     );
@@ -23,9 +23,9 @@ const isRequired = inputName =>
 const email = value => {
     if (!isEmail(value)) {
       return (
-        <div className="alert alert-danger" role="alert">
-          This is not a valid email.
-        </div>
+        <Alert variant="dark" className="validationAlert">
+        {value} is not a valid email.
+        </Alert>
       );
     }
 };
@@ -144,20 +144,20 @@ export default class Login extends Component {
                                 <div className="form-group text-center mt-4">
                                     <Button
                                         className="signIn-btn shadow-none"
-                                        variant="secondary"
+                                        variant="outline-primary"
                                         type="submit"
                                         disabled={this.state.loading}
                                     >
                                         {this.state.loading && (
                                             <span className="spinner-border spinner-border-sm"></span>
                                         )}
-                                        <span>{this.state.loading ? " signing in" : "Sign me in"}</span>                                  
+                                        <span>{this.state.loading ? " signing in" : "Sign in ->"}</span>                                  
                                     </Button>
                                 </div>
 
                                 {this.state.message && (
                                     <div className="form-group mt-3">
-                                        <Alert variant="danger">
+                                        <Alert variant="dark" className="validationAlert">
                                             {this.state.message}
                                         </Alert>
                                     </div>
