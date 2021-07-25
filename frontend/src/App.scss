@@ -7,21 +7,23 @@ html, body, #root {
   background-image: url(https://cdn.pixabay.com/photo/2020/12/06/16/16/cosmos-5809271_1280.png);
 }
 
-$primary-color: #5366AD;
+$primary-color: #585878;
 $darker-primary-color: darken($primary-color, 10%);
 
 $green-accent: #7FC89A;
 $darker-green-accent: darken($green-accent, 8%);
 
-.signIn-btn {
-  background-color: $primary-color;
-  border-radius:50px;
-  width: 160px;
-  height: 60px;
-}
+$logout-color: #80FFFFFF;
 
-.signIn-btn:hover, .signIn-btn:focus {
-  background-color: $darker-primary-color;
+
+.signIn-btn {
+  @extend .text-indieFlower;
+  border-color: white;
+  border-top: 2px solid $logout-color;
+  font-size: 25px !important;
+  width: 220px;
+  height: 80px;
+  color: white;
 }
 
 .custom-Input:focus {
@@ -29,14 +31,27 @@ $darker-green-accent: darken($green-accent, 8%);
 }
 
 .custom-btn, .custom-btn:disabled {
-  background-color: $primary-color;
   color: white;
-  border: 0;
   width: 80px;
   text-align: center;
+  @extend .text-indieFlower;
+  border-color: white;
+  border-top: 2px solid $logout-color;
 }
 
-$logout-color: #80FFFFFF;
+.modal-positive-btn {
+  @extend .text-indieFlower;
+  border-color: black;
+  color: black;
+  width: 180px;
+}
+
+.modal-cancel-btn {
+  @extend .text-indieFlower;
+  border-color: black;
+  color: black;
+  width: 135px;
+}
 
 .logout-btn {
   @extend .text-indieFlower;
@@ -61,11 +76,6 @@ $logout-color: #80FFFFFF;
   width: 140px;
 }
 
-.custom-btn:hover, .custom-btn:focus {
-  background-color: $darker-primary-color;
-  color: white;
-}
-
 .vertical-center {
   position: absolute;
   top: 50%;
@@ -78,8 +88,7 @@ $logout-color: #80FFFFFF;
 }
 
 .modal-header {
-  background-color: $primary-color;
-  opacity: 0.8;
+  background-color: $darker-primary-color;
   color: white;
 }
 
@@ -134,6 +143,8 @@ $logout-color: #80FFFFFF;
 .custom-toast {
   width: 100%;
   position: relative;
+  background-color: #222;
+  color: white;
   z-index: 500;
 }
 
@@ -232,4 +243,12 @@ $delete-btn-color: #9E4237;
 
 .jumbotron {
   color: white;
+}
+
+.validationAlert {
+  @extend .text-Cabin;
+  background-color: #585878;
+  color: white;
+  margin: 0 4% 0 4%;
+  border: none;
 }
