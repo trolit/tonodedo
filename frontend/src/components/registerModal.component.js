@@ -232,7 +232,7 @@ export default class RegisterModal extends Component {
                                             onClick={this.closeAndResetModal}
                                             disabled={this.state.loading}
                                         >
-                                            Close window
+                                            Close
                                         </Button>
                                     </div>
                                 </div>
@@ -258,7 +258,7 @@ export default class RegisterModal extends Component {
                                                     variant="outline-warning"
                                                     onClick={this.closeAndResetModal}
                                                 >
-                                                    Close window
+                                                    Close
                                                 </Button>
                                             </div>
                                         </div>

@@ -92,28 +92,31 @@ export default class AddTaskModal extends Component {
                                     </div>
 
                                     <div className="form-group mt-5">
-                                        <Button 
-                                            className="w-50 custom-btn" 
-                                            variant="success"
-                                            disabled={this.state.loading || this.state.description.length <= 0}
-                                            onClick={() => {
-                                                this.setState({ loading: true });
-                                                this.props.onTaskAdd(this.state.email, this.state.description); 
-                                                this.closeAndResetModal(); 
-                                            }}
-                                        >
-                                            {this.state.loading ? (
-                                                <span className="spinner-border spinner-border-sm"></span>
-                                            ) : "Add"}
-                                        </Button>
+                                        {this.state.description.length > 0 && 
+                                            <Button 
+                                                className="modal-positive-btn"
+                                                variant="outline-success"
+                                                disabled={this.state.loading}
+                                                onClick={() => {
+                                                    this.setState({ loading: true });
+                                                    this.props.onTaskAdd(this.state.email, this.state.description); 
+                                                    this.closeAndResetModal(); 
+                                                }}
+                                            >
+                                                {this.state.loading ? (
+                                                    <span className="spinner-border spinner-border-sm"></span>
+                                                ) : "Add"}
+                                            </Button>
+                                        }
 
                                         <Button 
-                                            variant="secondary" 
+                                            className="modal-cancel-btn"
+                                            variant="outline-warning" 
                                             style={{float: 'right'}} 
                                             disabled={this.state.loading}
                                             onClick={this.closeAndResetModal}
                                         >
-                                            Close window
+                                            Close
                                         </Button>
                                     </div>
                                 </div>

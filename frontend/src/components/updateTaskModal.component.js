@@ -65,7 +65,7 @@ export default class UpdateTaskModal extends Component {
                         <Container>
                         <Row>
                             <div className="form-group">
-                                <FontAwesomeIcon icon={faPen}/> &nbsp;
+                                <FontAwesomeIcon icon={faPen} size="2x"/> &nbsp;
                                 <strong>Update task description</strong>
                                 <Textarea
                                     type="text"
@@ -78,9 +78,9 @@ export default class UpdateTaskModal extends Component {
                             </div>
                         </Row>
                         <Row md={4} className="justify-content-center mt-4">
-                            <Button 
-                                className="w-50 custom-btn" 
-                                variant="secondary" 
+                            <Button
+                                className="modal-positive-btn"
+                                variant="outline-success" 
                                 onClick={() => { 
                                     this.props.onTaskUpdate(this.state.taskId, this.state.newDescription, this.state.currentUser.email); 
                                     this.closeModal();
@@ -90,11 +90,11 @@ export default class UpdateTaskModal extends Component {
                             </Button>
                             &nbsp;
                             <Button 
-                                className="w-150px"
-                                variant="warning" 
+                                className="modal-cancel-btn"
+                                variant="outline-warning"
                                 onClick={this.closeModal}
                             >
-                                Cancel update
+                                Cancel
                             </Button>
                         </Row>
                         </Container>      

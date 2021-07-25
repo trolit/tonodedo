@@ -118,7 +118,7 @@ export default class Task extends Component {
                 </div>
                 <div className="mb-5">
                   <div className="jumbotron welcome-text mt-4">
-                    <h1 className="mt-0">/ᐠ｡ꞈ｡ᐟ\</h1>
+                    <h1 className="mt-0 charcat">/ᐠ｡ꞈ｡ᐟ\</h1>
                     <h3>
                       Welcome back, <strong>{this.state.currentUser.email}</strong>
                     </h3>
@@ -140,12 +140,12 @@ export default class Task extends Component {
                     {this.state.tasks && this.state.tasks.map( ( {id, description, createdAt} ) => {
                       return (
                         <Col key={id} md={4}>
-                          <Card className="mt-4 task-card" bg="light" border="dark" style={{minHeight: "250px"}}>
+                          <Card className="mt-4 task-card" bg="light" border="dark">
                             <Card.Body className="task-card-body">
                               <Row>
                                 <Col>
                                   <FontAwesomeIcon className="fa-thumbtack-task" icon={faThumbtack}/> &nbsp; 
-                                  <em className="task-card-id text-center">Task #{id}</em>
+                                  <em className="task-card-id text-center">#{id}</em>
                                 </Col>
                                 <Col className="text-right">
                                   <div>
@@ -157,7 +157,9 @@ export default class Task extends Component {
                                 </Col>
                               </Row>
                               <hr className="hr-1"/>
-                              <em className="text-indieFlower" style={{whiteSpace: "pre-line"}}>{ReactHtmlParser(dompurify.sanitize(description))}</em>
+                              <span className="text-indieFlower" style={{whiteSpace: "pre-line"}}>
+                                {ReactHtmlParser(dompurify.sanitize(description))}
+                              </span>
                             </Card.Body>
                             <Card.Footer className="task-card-footer">
                               <UpdateTaskModal 

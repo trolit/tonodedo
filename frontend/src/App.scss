@@ -23,7 +23,7 @@ $logout-color: #80FFFFFF;
   font-size: 25px !important;
   width: 220px;
   height: 80px;
-  color: white;
+  color: white !important;
 }
 
 .custom-Input:focus {
@@ -42,8 +42,9 @@ $logout-color: #80FFFFFF;
 .modal-positive-btn {
   @extend .text-indieFlower;
   border-color: black;
-  color: black;
+  color: black !important;
   width: 180px;
+  font-size: 20px !important;
 }
 
 .modal-cancel-btn {
@@ -51,6 +52,7 @@ $logout-color: #80FFFFFF;
   border-color: black;
   color: black;
   width: 135px;
+  font-size: 20px !important;
 }
 
 .logout-btn {
@@ -126,6 +128,10 @@ $logout-color: #80FFFFFF;
   }
 }
 
+.charcat {
+  font-size: 60px;
+}
+
 .text-indieFlower {
   font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
   font-size: 18px;
@@ -152,6 +158,7 @@ $task-primary-color: #ECDE05;
 
 .task-card {
   border: none;
+  min-height: 300px;
 }
 
 .task-board {
@@ -160,13 +167,14 @@ $task-primary-color: #ECDE05;
   border: 10px solid #dfb289;
   background-repeat: repeat-y;
   min-height: 470px;
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 .empty-task-board-text {
   @extend .text-indieFlower;
   color: #ffffff;
   font-size: 30px;
+  margin-top: 10%;
 }
 
 .task-card-body {
@@ -179,7 +187,7 @@ $task-primary-color: #ECDE05;
 
 .task-card-id {
   @extend .text-Cabin;
-  font-size: 20px;
+  font-size: 25px;
   opacity: 0.2;
   position: absolute;
 }
