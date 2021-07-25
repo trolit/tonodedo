@@ -41,12 +41,12 @@ export default class AddTaskModal extends Component {
         
         <span>
             <Button 
-                className="custom-btn shadow-none" 
-                variant="success" 
+                className="addtask-btn shadow-none" 
+                variant="outline-primary" 
                 size="sm" 
                 onClick={this.openModal}
             >
-                here
+                + New task
             </Button>
 
             <Modal 

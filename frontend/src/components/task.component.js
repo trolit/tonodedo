@@ -98,35 +98,37 @@ export default class Task extends Component {
 
           {this.state.currentUser && 
             <Container>
-
-              <Row style={{float: 'right'}}>
-                <Button
-                  className="logout-btn"
-                  variant="secondary"
-                  onClick={() => { 
-                    AuthService.logout(); 
-                    window.location.reload(); 
-                  }}
-                >
-                  Log me out
-                </Button>
-              </Row>
-
-              <Row>
-                <img
-                    src="https://cdn.pixabay.com/photo/2020/01/21/18/39/todo-4783676_1280.png"
-                    className="img-fluid logo-image"
-                    alt="Application logo"
-                />
-                <div className="jumbotron">
-                  <h3>
-                    Welcome back, <strong>{this.state.currentUser.email}</strong> /ᐠ｡ꞈ｡ᐟ\ <br/>
-                  </h3>
-                  <small>What tasks did you complete today? Got new ones? Click <AddTaskModal email={this.state.currentUser.email} onTaskAdd={this.addTask.bind(this)}/> to add more.</small>
+              <Row className="mb-5 task-board">
+                <div className="mb-2">
+                  <Button
+                      className="logout-btn"
+                      variant="outline-primary"
+                      onClick={() => { 
+                        AuthService.logout(); 
+                        window.location.reload(); 
+                      }}
+                  >
+                    -&gt; Log out
+                  </Button>
+                  <img
+                      src="https://cdn.pixabay.com/photo/2020/01/21/18/39/todo-4783676_1280.png"
+                      className="img-fluid logo-image"
+                      alt="Application logo"
+                  />
                 </div>
-              </Row>
-              
-              <Row className="mt-3 mb-5 task-board">
+                <div className="mb-5">
+                  <div className="jumbotron welcome-text mt-4">
+                    <h1 className="mt-0">/ᐠ｡ꞈ｡ᐟ\</h1>
+                    <h3>
+                      Welcome back, <strong>{this.state.currentUser.email}</strong>
+                    </h3>
+                    <small>What tasks did you complete today? Got new ones?</small> <br/> 
+                    <br/>
+                    <AddTaskModal email={this.state.currentUser.email} onTaskAdd={this.addTask.bind(this)}/>
+                  </div>
+                </div>
+
+
                 {this.state.tasks && this.state.tasks.length === 0 && <Row>
                   <div className="empty-task-board-text">
                     Currently there are no tasks to display 😭 <br/>

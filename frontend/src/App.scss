@@ -4,6 +4,7 @@
 html, body, #root {
   height: 100%;
   width: 100%;
+  background-image: url(https://cdn.pixabay.com/photo/2020/12/06/16/16/cosmos-5809271_1280.png);
 }
 
 $primary-color: #5366AD;
@@ -35,22 +36,29 @@ $darker-green-accent: darken($green-accent, 8%);
   text-align: center;
 }
 
-$logout-color: #485d8b;
+$logout-color: #80FFFFFF;
 
 .logout-btn {
-  background-color: $logout-color;
+  @extend .text-indieFlower;
+  font-size: 22px !important;
   padding-top: 15px;
   padding-bottom: 20px;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
   border-color: white;
   border-top: 2px solid $logout-color;
   color: white;
   width: 140px;
+  float: right;
 }
 
-.logout-btn:focus, .logout-btn:hover {
-  background-color: darken($logout-color, 10%);
+.addtask-btn {
+  @extend .text-indieFlower;
+  font-size: 22px !important;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-color: white;
+  border-top: 2px solid $logout-color;
+  color: white;
+  width: 140px;
 }
 
 .custom-btn:hover, .custom-btn:focus {
@@ -99,7 +107,8 @@ $logout-color: #485d8b;
 }
 
 .logo-image {
-  width: 20%;
+  width: 30%;
+  float: left;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -111,6 +120,11 @@ $logout-color: #485d8b;
 .text-indieFlower {
   font-family: 'Indie Flower', cursive, Arial, Helvetica, sans-serif;
   font-size: 18px;
+}
+
+.welcome-text {
+  @extend .text-indieFlower;
+  font-size: 22px;
 }
 
 .text-Cabin {
@@ -130,11 +144,12 @@ $task-primary-color: #ECDE05;
 }
 
 .task-board {
-  background-image: url(https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366_1280.jpg);
+  background-color: #222;
   padding: 30px;
-  border-radius: 30px;
+  border: 10px solid #dfb289;
   background-repeat: repeat-y;
   min-height: 470px;
+  margin-top: 10%;
 }
 
 .empty-task-board-text {
@@ -213,4 +228,8 @@ $delete-btn-color: #9E4237;
 .fa-thumbtack-task {
   font-size: 50px;
   opacity: 0.1;
+}
+
+.jumbotron {
+  color: white;
 }
